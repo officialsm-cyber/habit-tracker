@@ -20,17 +20,17 @@ export default function HabitCard({ habit, onToggle, onDelete }: HabitProps) {
   return (
     <motion.div
       layout
-      initial={{ opacity: 0, y: 20, scale: 0.9 }}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.2 } }}
-      transition={{ type: "spring", stiffness: 400, damping: 25 }}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, scale: 0.9 }}
+      className={`group p-6 rounded-3xl border backdrop-blur-sm transition-all duration-300 relative overflow-hidden cursor-pointer flex flex-col justify-between min-h-40
+    ${
+      habit.completed
+        ? "bg-emerald-50 dark:bg-emerald-900/10 border-emerald-200 dark:border-emerald-500/20"
+        : "bg-white dark:bg-gray-900/50 border-gray-200 dark:border-gray-800 hover:border-gray-300 dark:hover:border-gray-700 shadow-sm"
+    } 
+    ${habit.theme}`}
       onClick={() => onToggle(habit.id)}
-      className={`group p-6 rounded-2xl border backdrop-blur-sm transition-colors duration-500 cursor-pointer relative min-h-35 flex flex-col justify-between
-        ${
-          habit.completed
-            ? "bg-gray-800/40 border-gray-700/50 opacity-60 shadow-none"
-            : `${habit.theme} hover:-translate-y-1 hover:shadow-xl`
-        }`}
     >
       <div className="flex justify-between items-start mb-4">
         <span
@@ -62,8 +62,7 @@ export default function HabitCard({ habit, onToggle, onDelete }: HabitProps) {
       </div>
 
       <h3
-        className={`text-xl font-semibold leading-relaxed transition-all duration-300 pr-12
-        ${habit.completed ? "line-through text-gray-500" : ""}`}
+        className={`text-lg font-bold mb-1 transition-colors ${habit.completed ? "text-emerald-700 dark:text-emerald-400" : "text-gray-800 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400"}`}
       >
         {habit.title}
       </h3>

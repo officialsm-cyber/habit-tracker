@@ -22,18 +22,10 @@ export default function Header({ today, progressPercentage }: HeaderProps) {
 
   return (
     <header className="mb-10 mt-8">
-      <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-white mb-3">
-        สวัสดี เมือง,{" "}
-        <span className="text-emerald-400">วันนี้พร้อมลุยไหม?</span>
+      <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4 tracking-tight">
+        สวัสดี เมือง, วันนี้พร้อมลุยไหม?
       </h1>
-
-      <p
-        suppressHydrationWarning
-        className="text-gray-400 text-lg tracking-wide mb-8"
-      >
-        {today}
-      </p>
-
+      <p className="text-lg text-gray-600 dark:text-gray-400">{today}</p>
       {/* จุดที่ปรับแก้: เปลี่ยนเป็น w-full เพื่อให้หลอดพลังยาวเต็มจอ */}
       <div className="w-full">
         <div className="flex justify-between items-end mb-2">

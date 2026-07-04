@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 interface HabitFormProps {
   inputValue: string;
@@ -6,7 +6,11 @@ interface HabitFormProps {
   onAddHabit: (e: React.FormEvent) => void;
 }
 
-export default function HabitForm({ inputValue, setInputValue, onAddHabit }: HabitFormProps) {
+export default function HabitForm({
+  inputValue,
+  setInputValue,
+  onAddHabit,
+}: HabitFormProps) {
   return (
     // จุดที่ปรับแก้: เปลี่ยนเป็น w-full ให้ช่องพิมพ์ยาวเต็มพื้นที่
     <form onSubmit={onAddHabit} className="relative w-full mb-12 group">
@@ -15,7 +19,7 @@ export default function HabitForm({ inputValue, setInputValue, onAddHabit }: Hab
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
         placeholder="เพิ่มเป้าหมายใหม่ของคุณวันนี้..."
-        className="w-full bg-gray-800/40 border border-gray-700 text-white rounded-2xl px-6 py-4 outline-none focus:border-emerald-500 focus:bg-gray-800/80 transition-all duration-300 placeholder-gray-500 shadow-inner"
+        className="w-full bg-white dark:bg-gray-900/50 text-gray-900 dark:text-white border border-gray-300 dark:border-gray-800 rounded-2xl px-6 py-4 outline-none focus:border-blue-500 transition-colors shadow-sm"
       />
       <button
         type="submit"
