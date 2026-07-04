@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import { motion } from "framer-motion";
 
 interface HabitFormProps {
   inputValue: string;
@@ -12,8 +14,13 @@ export default function HabitForm({
   onAddHabit,
 }: HabitFormProps) {
   return (
-    // จุดที่ปรับแก้: เปลี่ยนเป็น w-full ให้ช่องพิมพ์ยาวเต็มพื้นที่
-    <form onSubmit={onAddHabit} className="relative w-full mb-12 group">
+    <motion.form
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.3 }}
+      onSubmit={onAddHabit}
+      className="mb-10 relative group"
+    >
       <input
         type="text"
         value={inputValue}
@@ -23,11 +30,10 @@ export default function HabitForm({
       />
       <button
         type="submit"
-        disabled={!inputValue.trim()}
-        className="absolute right-2 top-2 bottom-2 bg-emerald-500 hover:bg-emerald-400 disabled:bg-gray-700 disabled:text-gray-500 text-white px-8 rounded-xl transition-colors flex items-center justify-center font-bold"
+        className="absolute right-2 top-2 bottom-2 bg-gray-900 dark:bg-white text-white dark:text-gray-900 px-6 rounded-xl font-bold hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors shadow-lg"
       >
         เพิ่ม
       </button>
-    </form>
+    </motion.form>
   );
 }

@@ -1,7 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
-import { motion, useMotionValue, useTransform, animate } from "framer-motion";
+import { motion } from "framer-motion";
 
 interface HeaderProps {
   today: string;
@@ -9,43 +8,45 @@ interface HeaderProps {
 }
 
 export default function Header({ today, progressPercentage }: HeaderProps) {
-  const count = useMotionValue(0);
-  const rounded = useTransform(count, Math.round);
-
-  useEffect(() => {
-    const animation = animate(count, progressPercentage, {
-      duration: 1,
-      ease: "easeOut",
-    });
-    return animation.stop;
-  }, [progressPercentage, count]);
-
   return (
-    <header className="mb-10 mt-8">
-      <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4 tracking-tight">
+    <div className="mb-8 md:mb-12 mt-16 md:mt-0">
+      <motion.h1
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4 tracking-tight"
+      >
         สวัสดี เมือง, วันนี้พร้อมลุยไหม?
-      </h1>
-      <p className="text-lg text-gray-600 dark:text-gray-400">{today}</p>
-      {/* จุดที่ปรับแก้: เปลี่ยนเป็น w-full เพื่อให้หลอดพลังยาวเต็มจอ */}
-      <div className="w-full">
-        <div className="flex justify-between items-end mb-2">
-          <span className="text-sm font-semibold text-gray-400 uppercase tracking-wider">
-            Daily Progress
-          </span>
-          <div className="text-2xl font-bold text-emerald-400 flex items-center">
-            <motion.span>{rounded}</motion.span>%
-          </div>
-        </div>
+      </motion.h1>
+      <motion.p
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.2 }}
+        className="text-lg text-gray-600 dark:text-gray-400 font-medium tracking-wide uppercase"
+      >
+        {today}
+      </motion.p>
 
-        <div className="w-full bg-gray-800 rounded-full h-2.5 overflow-hidden">
+      <motion.div
+        initial={{ opacity: 0, scaleX: 0 }}
+        animate={{ opacity: 1, scaleX: 1 }}
+        transition={{ delay: 0.4, duration: 0.8, ease: "easeOut" }}
+        className="mt-8"
+      >
+        <div className="flex justify-between text-xs font-bold text-gray-500 dark:text-gray-500 mb-3 tracking-widest">
+          <span>DAILY PROGRESS</span>
+          <span className="text-emerald-600 dark:text-emerald-400 text-base">
+            {progressPercentage}%
+          </span>
+        </div>
+        <div className="h-3 w-full bg-gray-200 dark:bg-gray-800 rounded-full overflow-hidden shadow-inner">
           <motion.div
-            className="bg-emerald-400 h-2.5 rounded-full"
             initial={{ width: 0 }}
             animate={{ width: `${progressPercentage}%` }}
-            transition={{ type: "spring", stiffness: 60, damping: 15 }}
+            transition={{ duration: 1, ease: "easeOut" }}
+            className="h-full bg-gradient-to-r from-emerald-500 to-teal-400 rounded-full"
           />
         </div>
-      </div>
-    </header>
+      </motion.div>
+    </div>
   );
 }
