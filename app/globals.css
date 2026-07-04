@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+/* === Global Styles สำหรับ Premium Theme === */
+body {
+  /* ใช้สีดำชาร์โคล (Deep Charcoal) เพื่อความพรีเมียม ถนอมสายตา */
+  background-color: #121212;
+  color: #ffffff;
+  /* ทำให้การเลื่อนหน้าเว็บสมูทขึ้น */
+  scroll-behavior: smooth;
+}
